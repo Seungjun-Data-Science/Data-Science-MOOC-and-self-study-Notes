@@ -1,0 +1,636 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Palindrome Algorithms"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "###### Palindrome\n",
+    "Is a string that is read the same from front-to-back and back-to-front\n",
+    "\n",
+    "(e.g.) noon, racecar, kayak\n",
+    "\n",
+    "###### Algorithm\n",
+    "A sequence of steps that accomplish a task"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "###### Algorithm 1\n",
+    "Reverse the string. Compare the reversed string to the original string.\n",
+    "\n",
+    "###### Algorithm 2\n",
+    "Split the string into two halves\n",
+    "Reverse the second half\n",
+    "Compare the first half to the reversed second half\n",
+    "\n",
+    "###### Algorithm 3\n",
+    "Compare the 1st to the last character. Compare the 2nd character to the second last character... Stop when the middle of the string is reached"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "###### Recipe for Designing Functions\n",
+    "1. Examples\n",
+    "2. Type Contract\n",
+    "3. Header\n",
+    "4. Description\n",
+    "5. Body\n",
+    "6. Test"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "def is_palindrome_v1(s):\n",
+    "    \"\"\" (str) -> bool\n",
+    "    Return True if and only if s is a palindrome.\n",
+    "    >>> is_palindrome('noon')\n",
+    "    True\n",
+    "    >>> is_palindrome('racecar')\n",
+    "    True\n",
+    "    >>> is_palindrome('dented')\n",
+    "    False\n",
+    "    \"\"\"\n",
+    "    return reverse(s) == s\n",
+    "\n",
+    "def reverse(s):\n",
+    "    \"\"\" (str) -> str\n",
+    "    Return a reversed version of s.\n",
+    "    >>> reverse('hello')\n",
+    "    'olleh'\n",
+    "    >>> reverse('a')\n",
+    "    'a'\n",
+    "    \"\"\"\n",
+    "    rev = ''\n",
+    "    # For each characte in s, add that char to the beginning of rev.\n",
+    "    for char in s:\n",
+    "        rev = char + rev\n",
+    "    return rev"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n",
+      "True\n",
+      "False\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Testing\n",
+    "print(is_palindrome_v1('noon'))\n",
+    "print(is_palindrome_v1('racecar'))\n",
+    "print(is_palindrome_v1('dented'))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "def is_palindrome_v2(s):\n",
+    "    \"\"\" (str) -> bool\n",
+    "    Return True if and only if s is a palindrome.\n",
+    "    >>> is_palindrome('noon')\n",
+    "    True\n",
+    "    >>> is_palindrome('racecar')\n",
+    "    True\n",
+    "    >>> is_palindrome('dented')\n",
+    "    False\n",
+    "    \"\"\"\n",
+    "    n = len(s)\n",
+    "    return s[:n//2] == reverse(s[n - n//2:])\n",
+    "\n",
+    "def reverse(s):\n",
+    "    \"\"\" (str) -> str\n",
+    "    Return a reversed version of s.\n",
+    "    >>> reverse('hello')\n",
+    "    'olleh'\n",
+    "    >>> reverse('a')\n",
+    "    'a'\n",
+    "    \"\"\"\n",
+    "    rev = ''\n",
+    "    # For each characte in s, add that char to the beginning of rev.\n",
+    "    for char in s:\n",
+    "        rev = char + rev\n",
+    "    return rev"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n",
+      "True\n",
+      "False\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Testing\n",
+    "print(is_palindrome_v2('noon'))\n",
+    "print(is_palindrome_v2('racecar'))\n",
+    "print(is_palindrome_v2('dented'))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "def is_palindrome_v3(s):\n",
+    "    \"\"\" (str) -> bool\n",
+    "    Return True if and only if s is a palindrome.\n",
+    "    >>> is_palindrome('noon')\n",
+    "    True\n",
+    "    >>> is_palindrome('racecar')\n",
+    "    True\n",
+    "    >>> is_palindrome('dented')\n",
+    "    False\n",
+    "    \"\"\"\n",
+    "    i = 0\n",
+    "    j = len(s) - 1\n",
+    "    while i < j and s[i] == s[j]:\n",
+    "        i += 1\n",
+    "        j -= 1\n",
+    "    return j <= i"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "True\n",
+      "True\n",
+      "False\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Testing\n",
+    "print(is_palindrome_v3('noon'))\n",
+    "print(is_palindrome_v3('racecar'))\n",
+    "print(is_palindrome_v3('dented'))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "collapsed": true
+   },
+   "source": [
+    "### Restaurant Recommendations Problem"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {},
+   "source": [
+    "Problem:\n",
+    "\n",
+    "Write a function that has three parameters:\n",
+    "\n",
+    "- a restaurant file that is open for reading\n",
+    "- the price range(one of $, $$, $$$ and $$$$), and \n",
+    "- a list of cuisines\n",
+    "\n",
+    "It returns a list of restaurants (in that price range serving at least one of those cuisines) and their ratings sorted from highest to lowest"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Representing Data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "# # dict of {str: int}\n",
+    "# name_to_rating = {'Georgie Porgie': 87,\n",
+    "# 'Queen St. Cafe': 82,\n",
+    "# 'Dumplings R Us': 71,\n",
+    "# 'Mexican Grill': 85,\n",
+    "# 'Deep Fried Everything': 52}\n",
+    "\n",
+    "# # dict of {str: list of str}\n",
+    "# price_to_names =\\\n",
+    "# {'$': ['Queen St. Cafe', 'Dumplings R Us', 'Deep Fried Everything'],\n",
+    "# '$$': ['Mexican Grill'],\n",
+    "# '$$$': ['Georgie Porgie'],\n",
+    "# '$$$$': []}\n",
+    "\n",
+    "# # dict of {str: list of str}\n",
+    "# cuisine_to_names =\\\n",
+    "# {'Canadian': ['Georgie Porgie'],\n",
+    "# 'Pub Food': ['Georgie Porgie', 'Deep Fried Everything'],\n",
+    "# 'Malaysian': ['Queen St. Cafe'],\n",
+    "# 'Thai': ['Queen St. Cafe'],\n",
+    "# 'Chinese': ['Dumplings R Us'],\n",
+    "# 'Mexican': ['Mexican Grill']}"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### Making a recommender function"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "FILENAME = 'restaurants_small.txt'"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "def read_restaurant(file):\n",
+    "    \"\"\" (file) -> (dict, dict, dict)\n",
+    "    Return a tuple of three dictionaries based on the information in the file:\n",
+    "    - a dict of {restaurant name: rating%}\n",
+    "    - a dict of {price: list of restaurant names}\n",
+    "    - a dict of {cuisine: list of restaurant names}\n",
+    "    \"\"\"\n",
+    "    split_lines_lst = []\n",
+    "    with open(file) as f:\n",
+    "        for line in f:\n",
+    "            split_lines_lst.append(line.strip().split('\\n'))\n",
+    "            \n",
+    "    for i in split_lines_lst:\n",
+    "        if ',' in i[0]:\n",
+    "            i += i[0].split(',')\n",
+    "            del i[0]\n",
+    "\n",
+    "    names=[]\n",
+    "    ratings=[]\n",
+    "    prices=[]\n",
+    "    cuisines=[]\n",
+    "\n",
+    "    for i in split_lines_lst[0:len(split_lines_lst):5]:\n",
+    "        names.append(i[0])\n",
+    "\n",
+    "    for i in split_lines_lst[1:len(split_lines_lst):5]:\n",
+    "        ratings.append(i[0])\n",
+    "\n",
+    "    for i in split_lines_lst[2:len(split_lines_lst):5]:\n",
+    "        prices.append(i[0])\n",
+    "\n",
+    "    for i in split_lines_lst[3:len(split_lines_lst):5]:\n",
+    "        cuisines.append(i)\n",
+    "\n",
+    "    name_to_rating = dict(zip(names, ratings))\n",
+    "\n",
+    "    price_to_names = {'$': [], '$$': [], '$$$': []}\n",
+    "    \n",
+    "    for k,v in zip(prices, names):\n",
+    "        price_to_names[k].append(v)\n",
+    "    \n",
+    "    cuisine_to_names = {'Canadian': [], 'Pub Food': [], 'Malaysian': [], \n",
+    "                        'Thai': [], 'Chinese': [],'Mexican': []}\n",
+    "    \n",
+    "    for cuisine, name in zip(cuisines, names):\n",
+    "        for k in cuisine:\n",
+    "            cuisine_to_names[k].append(name)\n",
+    "            \n",
+    "    return (name_to_rating, price_to_names, cuisine_to_names)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {
+    "collapsed": false,
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "({'Deep Fried Everything': '52%',\n",
+       "  'Dumplings R Us': '71%',\n",
+       "  'Georgie Porgie': '87%',\n",
+       "  'Mexican Grill': '85%',\n",
+       "  'Queen St. Cafe': '82%'},\n",
+       " {'$': ['Queen St. Cafe', 'Dumplings R Us', 'Deep Fried Everything'],\n",
+       "  '$$': ['Mexican Grill'],\n",
+       "  '$$$': ['Georgie Porgie']},\n",
+       " {'Canadian': ['Georgie Porgie'],\n",
+       "  'Chinese': ['Dumplings R Us'],\n",
+       "  'Malaysian': ['Queen St. Cafe'],\n",
+       "  'Mexican': ['Mexican Grill'],\n",
+       "  'Pub Food': ['Georgie Porgie', 'Deep Fried Everything'],\n",
+       "  'Thai': ['Queen St. Cafe']})"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "read_restaurant(FILENAME)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "def filter_by_cuisine(names_matching_price, cuisine_to_names, cuisines_list):\n",
+    "    \"\"\" (list of str, dict of {str: list of str}, list of str)\n",
+    "    -> list of str\n",
+    "\n",
+    "    >>> names = ['Queen St. Cafe', 'Dumplings R Us', 'Deep Fried Everything']\n",
+    "    >>> cuis = 'Canadian': ['Georgie Porgie'], \n",
+    "    'Pub Food': ['Georgie Porgie', 'Deep Fried Everything'],\n",
+    "    'Malaysian': ['Queen St. Cafe'],\n",
+    "    'Thai': ['Queen St. Cafe'],\n",
+    "    'Chinese': ['Dumplings R Us'],\n",
+    "    'Mexican': ['Mexican Grill']\n",
+    "    >>> cuisines =['Chinese', 'Thai']\n",
+    "    >>> filter_by_cuisine(names, cuis, cuisines)\n",
+    "    ['Queen St. Cafe', 'Dumplings R Us']\n",
+    "    \"\"\"\n",
+    "    final_lst = []\n",
+    "    for cuisine in cuisines_list:\n",
+    "        for c in cuisine_to_names[cuisine]:\n",
+    "            if c in names_matching_price:\n",
+    "                final_lst.append(c)\n",
+    "    return final_lst"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "def build_rating_list(name_to_rating, names_final):\n",
+    "    \"\"\" (dict of {str: int}, list of str) -> list of list of [int, str]\n",
+    "    >>> name_to_rating = {'Georgie Porgie': 87, 'Queen St. Cafe': 82,\n",
+    "    'Dumplings R Us': 71,\n",
+    "    'Mexican Grill': 85,\n",
+    "    'Deep Fried Everything': 52}\n",
+    "    >>> names = ['Queen St. Cafe', 'Dumplings R Us']\n",
+    "    >>> build_rating_list(name_to_rating, names)\n",
+    "    [[82, 'Queen St. Cafe'], [71, 'Dumkplings R Us]]\n",
+    "    \"\"\"\n",
+    "    result_keys = []\n",
+    "    sorted_ratings = sorted([name_to_rating[i] for i in names_final], reverse=True)\n",
+    "    for i in sorted_ratings:\n",
+    "        for key in name_to_rating:\n",
+    "            if name_to_rating[key] == i:\n",
+    "                result_keys.append(key)\n",
+    "    return list(zip(sorted_ratings, result_keys))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "def recommend(file, price, cuisines_list):\n",
+    "    \"\"\"(file open for reading, str, list of str) -> list of [int, str] list\n",
+    "    \n",
+    "    Find restaurants in file that are priced according to price \n",
+    "    and that are tagged with any of the items in cuisines list.\n",
+    "    Return a list of lists of the form (rating%, restaurant name],\n",
+    "    sorted by rating%)\n",
+    "    \"\"\"\n",
+    "    # Read the file and build the data structures\n",
+    "    # - a dict of {restaurant name: rating%} a dict of price_names\n",
+    "    # - a dict of {price: list of restaurant names}\n",
+    "    # - a dict of {cuisine: list of restaurant names}\n",
+    "    name_to_rating, price_to_names, cuisine_to_names = \\\n",
+    "    read_restaurant(file)\n",
+    "    \n",
+    "    # Look for price or cuisines first?\n",
+    "    # Price: look up the list of restaurant names for the requested price\n",
+    "    names_matching_price = []\n",
+    "    for p in price_to_names.keys():\n",
+    "        if p <= price:\n",
+    "            names_matching_price += price_to_names[p]\n",
+    "    \n",
+    "    # Now we have a list of restaurants in the right price range\n",
+    "    # Need a new list of restaurants that serve one of the cuisines\n",
+    "    names_final =\\\n",
+    "    filter_by_cuisine(names_matching_price, cuisine_to_names, cuisines_list)\n",
+    "    \n",
+    "    # Now we have a list of restaurants that are in the right price range and serve the requested cuisine\n",
+    "    # Need to look at ratings and sort this list\n",
+    "    result = build_rating_list(name_to_rating, names_final)\n",
+    "    # We're done! Return that sorted list.\n",
+    "    return result"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[('87%', 'Georgie Porgie'),\n",
+       " ('82%', 'Queen St. Cafe'),\n",
+       " ('52%', 'Deep Fried Everything')]"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Testing\n",
+    "recommend(FILENAME, '$$$', ['Pub Food','Thai'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[('82%', 'Queen St. Cafe')]"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Testing\n",
+    "recommend(FILENAME, '$$', ['Canadian', 'Malaysian'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[('82%', 'Queen St. Cafe'), ('71%', 'Dumplings R Us')]"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Testing\n",
+    "recommend(FILENAME, '$$', ['Thai', 'Chinese'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[('82%', 'Queen St. Cafe')]"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Testing\n",
+    "recommend(FILENAME, '$', ['Mexican', 'Malaysian'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[('52%', 'Deep Fried Everything')]"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Testing\n",
+    "recommend(FILENAME, '$', ['Canadian', 'Pub Food'])"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.5.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
