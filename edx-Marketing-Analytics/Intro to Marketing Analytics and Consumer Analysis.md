@@ -8,15 +8,15 @@ https://courses.edx.org/courses/course-v1:ColumbiaX+BAMM.104x+1T2019/course/
 - Lou Gerstner (CEO of IBM from 1993 to 2002) “Everything starts with the customer”
 
 Strategic Marketing Framework
-Segmentation  Targeting  Positioning
-product pricepromotionplace (4ps of marketing)
+- Segmentation, Targeting, Positioning
+- 4ps of marketing: Product, Price, Promotion, Place 
 
 ## Understanding Customers
 - Who are your customers?
-* Buyers v.s. Users
-* Whoever influences their decisions
+  *Buyers v.s. Users
+  *Whoever influences their decisions
 - What do they need? How do they buy?
-* What do they value when buying products and services
+  *What do they value when buying products and services
 
 ## Sources of Value to Consumers
 EVC (Economic value to Customer)
@@ -25,13 +25,13 @@ E.g. Hybrid Car
 - Psychological Value: viewed as innovator, feels good to be environmentally friendly
 - Functional Value: not noisy, comfortable
 - Issues with EVC
-* Customer differences
-* Convincing customers
-* Other (fuzzy, qualitative) benefits ignored
-* BUT still useful in pricing, segmentation and new product introduction
+  *Customer differences
+  *Convincing customers
+  *Other (fuzzy, qualitative) benefits ignored
+  *BUT still useful in pricing, segmentation and new product introduction
 
-Quadrant Analysis: X-axis ratings and Y-axis Importance of each attribute of product
-Value Map
+- Quadrant Analysis: X-axis ratings and Y-axis Importance of each attribute of product
+- Value Map
  
 
 
