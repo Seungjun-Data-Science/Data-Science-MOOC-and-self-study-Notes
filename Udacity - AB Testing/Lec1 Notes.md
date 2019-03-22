@@ -30,7 +30,7 @@ a different product you're missing. Instead, you might want to try asking users 
 But still valuable information: you could see how many users will read about the additional features or how many will choose to upgrade if you make the choice available.
 
 - Netflix: They create a new algorithm to rank the possible recommendations.
-Great use case of A/B testing because there are clear control and experiment groups, the old algorithm and the new algorithm. Also, have clear metrics (e.g. the probability of a user clicking on a recommendation or actually watching the movie)
+    ** Great use case of A/B testing because there are clear control and experiment groups, the old algorithm and the new algorithm. Also, have clear metrics (e.g. the probability of a user clicking on a recommendation or actually watching the movie)
 
 - Website selling cars: want to if some change will make customers more likely to return or refer their friends
 Won’t be able to use A/B testing because it would take too long to see if you get repeat customers (since people buy cars rarely) and you won’t necessarily even have data about whether customers are recommending 
@@ -47,8 +47,8 @@ e.g. Agriculture: people would actually divide up their land into sections and t
 - Medicine: A/B testing is called “clinical trials” and that’s how they determine whether a new drug is effective or not
 - Having consistent response from your control and your experiment group is important
 - Difference between normal experiments and online A/B test
-Online world has a lot of more data but lower resolution
-Normal experiment has way less participants and it’s more personal while online A/B testing may have millions of users, thousands of clicks etc and may have trouble distinguishing whether this is a single person, whether there’s multiple people. Is it an internet café computer? 
+    ** Online world has a lot of more data but lower resolution
+    ** Normal experiment has way less participants and it’s more personal while online A/B testing may have millions of users, thousands of clicks etc and may have trouble distinguishing whether this is a single person, whether there’s multiple people. Is it an internet café computer? 
 
 Business Case Example
 Company focused on providing free finance courses: trying to test features that increase student engagement.
@@ -57,8 +57,8 @@ Consider change to “Start Now button”: change color from orange to pink  
 Potential metrics
 - Total number of courses completed: it can take students weeks or months to finish courses, so this metric would simply take too much time to be practical
 - Number of Clicks
-* Click through rate: number of clicks / number of page views
-* Click through probability: Unique visitors who click / unique visitors to page
+  ** Click through rate: number of clicks / number of page views
+  ** Click through probability: Unique visitors who click / unique visitors to page
 
 
 
