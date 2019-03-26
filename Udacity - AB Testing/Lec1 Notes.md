@@ -123,14 +123,14 @@ How do the following changes affect page views?
 Different Confidence Interval Cases – How to deal with uncertainty
  
 
-~Cases in bold are tricky cases~
+Cases in bold are tricky cases
 
-1st case: Launch for sure
-2nd case: called “Neutral” No statistically significant change from 0 since the CI includes 0 and you are also confident there’s not a practically significant change. Given this, it’s not worth the effort to launch the change
-3rd case: You are statistically confident that there was a positive change but it’s not practically significant change. Thus, not worth launching.
-4th case: You do not have enough power to draw a strong conclusion. Running additional test with stronger power is recommended
-5th case: The point estimate is beyond what is practically significant but CI overlaps 0, so repeating this test with greater power would give additional confidence to the results
-6th case: Your best guess is again that there is a practically significant positive change, however it’s also possible your change is not practically significant, and thus should run additional tests
+- 1st case: Launch for sure
+- 2nd case: called “Neutral” No statistically significant change from 0 since the CI includes 0 and you are also confident there’s not a practically significant change. Given this, it’s not worth the effort to launch the change
+- 3rd case: You are statistically confident that there was a positive change but it’s not practically significant change. Thus, not worth launching.
+- 4th case: You do not have enough power to draw a strong conclusion. Running additional test with stronger power is recommended
+- 5th case: The point estimate is beyond what is practically significant but CI overlaps 0, so repeating this test with greater power would give additional confidence to the results
+- 6th case: Your best guess is again that there is a practically significant positive change, however it’s also possible your change is not practically significant, and thus should run additional tests
 
 
 
