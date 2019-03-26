@@ -29,6 +29,80 @@ a different product you're missing. Instead, you might want to try asking users 
 Wouldn't be able to fully test whether the premium service is a good business decision using A/B testing. Users have to opt into a premium service, so randomly assigning people to one group or another wouldn't really work and you would not have a control group to compare against.
 But still valuable information: you could see how many users will read about the additional features or how many will choose to upgrade if you make the choice available.
 
+Click through rate v.s. Click through probability
+If you want to measure the usability of a particular button, you use a rate because the users have a variety of different places on the page that they can actually choose to click on. And so the rate will say how often do they actually find that button.
+
+Now, if you just want to know how often users went to the second level page on your site, you use a probability, because you don't want to count if users just double-clicked, or did they reload, or all of those types of issues. If you are interested in whether users are progressing to the second level of the funnel, probability will be a better choice for metric.
+
+E.g. 1,000 unique users visit the Audacity homepage and 100 of those visitors clicked the start now button at least once. Then, click through probability = 10/ 100 = 10%
+
+Binomial Distribution
+As you increase n, the binomial distribution starts to look more and more like a normal distribution 
+Mean = p
+std = sqrt[p(1-p) / N]
+
+Assumptions
+- There have to be exactly two types of outcomes (e.g. success, failure)
+- Events have to be independent
+- Events need to follow an identical distribution. That is, p needs to be the same for all of them.
+
+E.g. In which cases can we use a binomial distribution?
+- Drawing 20 cards from a shuffled deck (X): p becomes different as we draw more cards
+- Roll a die 50 times (O)
+- Clicks on a search results page (X): Not independent cuz if user doesn’t find results they want, they will use different key words and so forth
+- Student completion of course after 2 months (O): overall reasonable unless one user makes two accounts and they are correlated and there is no way to distinguish them etc.
+- Purchase of items within a week (X): One customer can buy bunch of items and they can be all correlated
+
+Confidence Interval
+To be able to use the normal distribution of confidence intervals, N x p^ > 5 & N(1-p^) > 5
+Margin of error = Z * SE = Z * sqrt[p^ (1-p^) / N]
+
+Hypothesis Testing
+Null Hypothesis(H0): Pcont = Pexp
+Alternative Hypothesis(HA): Pexp – Pcont =! 0 
+Calculate P(P^exp – P^cont | H0): Reject null if this probability is < 0.05 (or some significance alpha level)
+
+Pooled Standard Error
+If you have two samples, we need standard error that gives a good comparison of both. In this case, we can use “pooled error”.
+Number of users in each group: Xcont, Xexp 
+Total number of users in each group: Ncont, Nexp
+P^pool = Xcont + Xexp / Ncont + Nexp
+SEpool = sqrt[^Ppool * (1-^Ppool)*(1/Ncont + 1/Nexp)]
+^d = ^Pexp - ^Pcont
+H0: d = 0, ^d ~ N(0, SEpool)
+If ^d > 1.96 * SEpool or ^d < -1.96 * SEpool, reject null
+
+Size v.s. Power Trade-Off
+- Main question is how many page views we need to get a statistically significant result. This is called “statistical power”
+- Power has an inverse trade-off with size. The smaller the change you want to detect, you have to run an experience with larger sample size
+Alpha = P(reject null | null true) = Percent of the time a difference will be detected, assuming one does not exist
+Beta = P(fail to reject | null false)
+* Small sample: alpha low, beta high
+* Larger sample: alpha same, beta lower
+1 – beta = sensitivity (often 80%) = percent of time the minimum effect size will be detected, assuming it exists
+
+How do the following changes affect page views?
+- Higher click through probability in control (but still less than 0.5): This will increase SE which means we need to increase N(page views) to in order to reduce the SE back to its original level
+- Increased practical significance level (dmin): Decrease page views because larger changes are easier to detect, so doesn’t need as many page views
+- Increased confidence level (1 – alpha): saying that you want to be more certain that a change has occurred before you reject the null. In essence, you are being more conservative. You could accomplish that by rejecting the null less often, but then your sensitivity goes down. If you want to keep sensitivity the same, you’ll need to increase the page views you collect.
+- Higher Sensitivity (1-beta): If you want to increase sensitivity, need to collect more page views to narrow the distribution
+
+Different Confidence Interval Cases – How to deal with uncertainty
+ 
+
+~Cases in bold are tricky cases~
+
+1st case: Launch for sure
+2nd case: called “Neutral” No statistically significant change from 0 since the CI includes 0 and you are also confident there’s not a practically significant change. Given this, it’s not worth the effort to launch the change
+3rd case: You are statistically confident that there was a positive change but it’s not practically significant change. Thus, not worth launching.
+4th case: You do not have enough power to draw a strong conclusion. Running additional test with stronger power is recommended
+5th case: The point estimate is beyond what is practically significant but CI overlaps 0, so repeating this test with greater power would give additional confidence to the results
+6th case: Your best guess is again that there is a practically significant positive change, however it’s also possible your change is not practically significant, and thus should run additional tests
+
+
+
+
+
 - Netflix: They create a new algorithm to rank the possible recommendations.
     ** Great use case of A/B testing because there are clear control and experiment groups, the old algorithm and the new algorithm. Also, have clear metrics (e.g. the probability of a user clicking on a recommendation or actually watching the movie)
 
