@@ -28,6 +28,36 @@
 ### Unit of Analysis v.s. Unit of Diversion
 - Changing the unit of diversion can change the variability of a metric, sometimes pretty dramatically
  
+### Intra-User Experiment
+- Expose the same user to this feature being on and off over time and analyze how they behave in different time windows
+- Pitfalls: have to really careful that you choose a comparable time window; frustration & learning problem where people learn to use the particular feature in the first two weeks and then when you turn it off, they are like, why did my website change? So you can get different results as a result
+
+### Interleaved experiment
+- Expose the same user to the A and the B side at the same time for things like search ranking, preferences or things have ordered ranked list
+- This typically only works in cases where you are looking at reordering a list
+- In an interleaved ranking experiment, suppose you have two ranking algorithms, X and Y. Algorithm X would show results X1, X2, … XN in that order, and algorithm Y would show Y1, Y2, … YN. An interleaved experiment would show some interleaving of those results, for example, X1, Y1, X2, Y2, … with duplicate results removed. One way to measure this would be by comparing the click-through-rate or -probability of the results from the two algorithms.
+
+### Target Population in Inter-user Experiment
+- There are different users in the different groups. What’s next?
+- Need to decide who you are targeting in your users. For example, there are some easy divisions. What brower, what geo location, country, language etc.
+- You may not want to dilute the effect of your experiment across a global population. So if you are analyzing an experiment for the first time, and it only affects English, you may want to actually do your analysis specific on English, and be able to ignore the rest of the population
+- Before you launch a big change, you may want to go back and run a global experiment and make sure that you don’t have any unintentional effects on users you weren’t targeting
+- Filtering traffic can affect variability of metric as well
+ 
+### Population v.s. Cohort
+- Within the population, you can define what’s called a cohort. This means people who enter the experiment at the same time. 
+- If you just divert by cookie or user ID and you look at this particular country, you may have all kinds of problems during the span of your experiment where people come who come in classified as that country, either drop out of that experiment or gets reclassified into a different region, so co cohort means that you define an entering class and you only look at users who entered your experiment on both sides around the same time and you go forward from there
+- Cohorts are harder to analyze and they are going to take more data because you’ll lose users. So typically, you only want to use them when you are looking for user stability. So say, you have a learning effect or you want to measure something like increased usage of the site, those are cases where you really want to see if your change had a real effect on their behavior relative to their history. Then you need a cohort. If you don’t need those types of metrics, then you can probably stick with the population.
+ 
+### Sizing
+- It’s iterative process. Try out some decisions and see what the implications are for size and duration of our experiment and then if we don’t like the results, we go back and iterate
+- e.g. page load time, 90th percentile latency: if you want to use ID as diversion metric, you need a lot of data to make that work. So, you know what, I’m really affecting the 90th percentile here, that’s what I’m targeting, so let’s look at people with slow connections. Then, I want to look at cohort of users who’ve used my site fairly regularly over the past two months. In that way, I can get more data about them more quickly. 
+
+
+
+
+
+
 
  
 
