@@ -53,6 +53,72 @@
 - It’s iterative process. Try out some decisions and see what the implications are for size and duration of our experiment and then if we don’t like the results, we go back and iterate
 - e.g. page load time, 90th percentile latency: if you want to use ID as diversion metric, you need a lot of data to make that work. So, you know what, I’m really affecting the 90th percentile here, that’s what I’m targeting, so let’s look at people with slow connections. Then, I want to look at cohort of users who’ve used my site fairly regularly over the past two months. In that way, I can get more data about them more quickly. 
 
+Size Example
+- Situation: Udacity Promotions for coaching next to videos
+- Experiment: change wording of message
+- Metric: Click through rate = # clicks / # pageviews
+- Unit of diversion: page view or cookie
+- Analytic variability won’t change, but probably under-estimate for cookie diversion
+- Empirical estimate with 5000 pageviews
+* By pageview: 0.00515
+* By cookie: 0.0119
+Quite a difference but how will it actually affect the size of the experiment?
+To calculate size, assume SE ~ 1/sqrt(N)
+ 
+dmin= 0.02
+Diverting by page view: 2600
+By cookie: 13,900
+
+### How to reduce size of an experiment
+- Experiment: change the order of courses on course list
+- Metric: Click through rate (total # user clicks on any course / # of pageviews)
+- Unit of diversion: cookie
+Alpha = 0.05; beta = 0.2; dmin = 0.01; SE=0.0628 for 1000 pageviews (empirically)
+- Result: Need 300,000 pageviews per group
+
+Udacity isn’t willing to spend that long getting results on just one experiment, especially if it means they can’t run any other experiments in the meantime. Which strategies could reduce the number of page views?
+- Change unit of diversion to page view: Yes! Because it makes unit of diversion same as unit of analysis but will less consistent experience be okay? If SE changes to 0.0209 for the sample size, then only 34,000 page views per group would be necessary.
+- Targeting experiment to specific traffic: Yes! Because non-English traffic will dilute the results. Filtering traffic can also impact choice of practical significance boundary (since you are only looking at a subset of your traffic, you might need a bigger change before it matters to the business or since variability is probably lower, you might want to detect smaller changes rather than decreasing the size of the experiment). If SE changes to 0.0188, dmin to 0.015, then only need 12,000 page views per group
+- Change metric to cookie-based click through probability: Nope! Especially if you are using a short time window for the probability. If there is a difference, the probability will probably go down since the unit of analysis would be the same as the unit of diversion in this case. 
+
+### Size Triggering
+- If you don’t know what fraction of your population is going to be affected, you are going to have to be pretty conservative when you plan how much time and how many users have to see your experiment. 
+- Now that said, either run a pilot where you turn on the experiment for a little while and see who’s affected or even just use the first day or week of the data to try to get a better guess
+
+### Duration v.s. Exposure
+- What’s the duration of the experiment that I want to run?
+- When do I want to run the experiment? (e.g. holidays?)
+- What fraction of your traffic you are going to through the experiment
+e.g. unit of diversion: cookie; on any given day, what proportion of the cookies are you sending to your experiment and your control? Let’s say we need 1 million cookies in our experiment and our control combined. Now, if you only get a 100,000 cookies visiting your site on any given day, that means that if you want to run 50% of your traffic through the experiment and 50% through the control, you need to run your experiment control for 10 days. Another choice is to run your experiment at 25% each, say, because you want to run another test, then you’d have to run your experiment for 20 days as opposed to 10. And that’s how the duration of your experiment is related to the proportion of traffic you are sending through that experiment.
+
+### Duration v.s. Exposure: Example
+- Size of experiment: 1 million page views
+- Average traffic per day: 500,000 page views
+- Run experiment for 2 days
+- Likely to have weekly variation (e.g. traffic higher on weekdays than weekends)
+- Then, you should run on mix of weekend and weekday days and for 3 days
+- For risky change, run larger with less traffic
+
+### When to limit exposure: Which experiments are risky enough that Audacity might want to limit the number of users exposed?
+- Changes database (O): If this goes wrong, effects could be huge!
+- Changes color of “start now” button (X): Low risk (but should still test)
+- Allows facebook login (O): If you don’t roll out, how to deal with Facebook logins?
+- Changes order of courses on course list (X): Low risk if you’ve run similar experiments
+
+### Learning Effects
+- Learning effects is basically when you want to measure user learning or whether a user is adapting to change or not
+- Two types of learning effects: change aversion—users see the change and they don’t like anything; novelty effect—oh this is new I want to try everything around
+- Key issue with trying to measure a learning effect is time. It takes time for you to just adapt to a change and often times, you don’t have the luxury of taking that much time to make a decision
+- Choosing the unit of diversion correctly: If you want to measure user learning, you need a stateful unit of diversion like a cookie or user ID
+- A lot of user learning is based on how often they see the change (“dosage”), you probably want to use cohort as opposed to using the entire population. You would choose a cohort in both the experiment and the control based on either how long they’ve been exposed to the change or how many times they’ve seen it
+- From duration perspective, it’s going to take some time to see what’s going to be happening
+- From risk perspective, you are probably a little uncertain about what the effect is going to be which means it’s a higher risk change
+- For both perspectives, you want to run it through a small proportion of your users for a longer period of time
+
+### Pre periods & Post periods
+- Before you run your A/B test, you are on a pre-period on the exact same populations but they are receiving the exact same treatment. It’s an A v.s. A test on the same set of users. And what happens in the pre-period is that if you measure any difference between your experiment and your control populations, that’s due to something else: system variability, user variability etc. Pre-period is useful not just when you want to test user learning but sort of across the board so that you know that any difference in your experiment and control is due to the experiment and not due to pre-existing, inherent differences in your population
+- Post period: after I run my experiment, I’m going to run another A v.s. A test, and if there is any differences in the experiment and control populations after I run the experiment, then I can attribute those differences to user learning that happened in the experiment period
+
 
 
 
