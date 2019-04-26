@@ -84,7 +84,47 @@ Days where CTR is higher in experiment: 9/14  Two tail p value = 0.4240 > 0.0
 - If you want to set up say automatic alerting that tells you, oh one of my metrics was significantly different on this experiment, you probably want to use multiple comparisons
 https://en.wikipedia.org/wiki/Multiple_comparisons_problem
 
+### Multiple Metrics: Example
+- Experiment: Prompt students to contact coach more frequently
+- Metrics: Probability that student signs up for coaching; How early students sign up for coaching; Average price paid per student
+- If Audacity tracks all three metrics and does three separate significance tests (alpha = 0.05), what is the probability at least one metric will show a significant different if there is no true difference (i.e. For 3 metrics, what is the chance of at least 1 False Positive)
+* P(FP=0) = 0.95 * 0.95 * 0.95 = 0.857 (Assuming Independence)
+* P(FP >= 1) = 1 – 0.857 = 0.143
+- What is the probability of at least one false positive for: 
+* 10 metrics and 95% confidence: 0.401 (alpha overall = 1 – (1 – alpha individual)^n)
+* 10 metrics and 99% confidence: 0.096
+ 
+### Another Example
+- Problem: Probability of any false positive increases as you increase number of metrics
+- Solution: Use higher confidence level for each metric
+- Method 1: Assume Independence  alpha_overall = 1 – (1 - alpha_individual)^n
+- Method 2: Bonferrori Correction (simple, no assumptions, conservation because guaranteed to give alpha_overall at least as small as specified)
+https://en.wikipedia.org/wiki/Bonferroni_correction
+* alpha_individual = alpha_overall / n 
+* alpha_overall = 0.05; n = 3; alpha_individual = 0.0167
 
+https://en.wikipedia.org/wiki/False_discovery_rate
+https://en.wikipedia.org/wiki/Closed_testing_procedure
+https://en.wikipedia.org/wiki/Boole%27s_inequality
+https://en.wikipedia.org/wiki/Holm%E2%80%93Bonferroni_method
+
+### Analyzing Multiple Metrics
+- All related metrics are going to move in the same direction (e.g. click through rate & click through probability)
+- When you have a composite metric (e.g. RPM revenue per thousand queries is composed of click through rate and cost per clicks)
+- Multiple metrics can be unruly: Let’s say you’ve decided that reading time on the page or stay time is a good signal. People like your page. But clicks are also a good signal. And so then you might see that when you make a UI change to the page, people spend time less reading but more time clicking. You can’t really quantitatively evaluate which one is better.
+- OEC (Overall Evaluation Criteria): It doesn’t absolve you of understanding why stay time and clicks are moving in these different directions. What it can be helpful with this balancing long term investment like return visits to the site with short term day to day metrics like increased clicks, you don’t want to lose one in pursuing the other one. So often the best OICs give you a good balance between those two things.
+- How do you find a good OEC? : A lot of validation. But start from some kind of business analysis. Our company wants to look at 25% revenue plus 75% increase usage of the site. But you want to make sure that you don’t plan so much around what the company thinks should happen with those experiments that you steer yourself in a way that you hid other changes that you weren’t expecting.
+
+### Drawing Conclusions
+- Once we figured out which metrics have significant changes, what comes next: Now you have to decide what your results do and don’t tell you. If you have statistically significant results, then that means you are unlikely to have zero impact on the user experience. But now the questions come down to A, do you understand the change and B, do you want to launch the change?
+- How do you decide whether to launch your change or not: (1) Do I have statistically and practically significant results in order to justify the change? (2) Do I understand what that change has actually done with user experience (3) Is it worth it?
+
+### Changes over time
+- Good practice to always do a ramp-up when you actually want to launch a change
+- Remove all of the filters (e.g. only testing change only on English, for example, you want to test your change during your ramp-up on all users) Because what you want to know is if there’s been any incidental impact to unaffected users that you didn’t test in the original experiment
+- But the effect may actually flatten out as you ramp up the change. 
+* seasonality effects: when students go on vacation, behavior totally changes. And Black Friday etc shopping behavior is totally different.  To capture these kinds of seasonal and event drive variations, use “holdback”: launch change to everyone except for small holdback, a set of users, that don’t get the change, and you continue comparing their behavior to control. Now, in that case, you should see the reverse of the impact that you saw in your experiment and what you can do is you can track that over time until you are confident that your results are repeatable.
+* Novelty effect, change aversion behavior of users  use “cohort”
 
 
 
